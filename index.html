@@ -1,0 +1,288 @@
+<html lang="pt-BR">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+    Quiz emagrecimento
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+        body {
+            font-family: Arial, sans-serif;            
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;            
+            background-color: #c9ebc9;       
+        }
+        .container {
+            display: grid;
+            grid-template-columns:( 2, 170px); /* 2 colunas */
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 50px;              
+        }
+
+        .a {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 20px;
+            color: #0004ff;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header img {
+            width: 100px;
+            height: auto;
+        }
+        .header h1 {
+            font-size: 3.5em;
+            font-family: Jazz LET;
+            color: #ff0000;
+            text-shadow: 10px 20px 15px #555;
+            margin: 10px 0;
+            text-shadow:  
+            1px -1px 0 #2f5d87,
+            2px -2px 0 #2e5a83, 
+            3px -3px 0 #2d5880;
+        }
+        .header p {
+            font-family: Jazz LET, fantasy;
+            font-size: 3em;
+            color: #000000;
+            text-shadow:
+            1px -1px 0 #b8b8b8,
+            2px -2px 0 #b8b8b8, 
+            3px -3px 0 #b8b8b8;
+           
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px; /* Para compensar o padding das colunas*/
+            justify-content: space-between;
+        }
+        .gallery-item {
+            flex: 0 0 calc(50% - 20px); /* 50% da largura menos a margem */
+            margin: 10px;
+            box-sizing: border-box;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .gallery-item button {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            display: block;
+            width: 100%;            
+            padding: 10px;
+            background-color: #ee9b00;
+            border: none;
+            color: #0004ff;
+            text-decoration: underline #0004ff;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .gallery-item button:hover, .gallery-item button:focus {
+            background-color: #32cd32;
+            transform: scale(1.05);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        .modal .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            color: red;
+            cursor: pointer;
+        }
+
+        footer {
+            font-size: 9;
+            background-color: #ff0000;
+            color: #fff;
+            text-align: center;            
+            padding-left: 0 auto;
+            padding-right: 0 auto;
+            margin-top: 30%;         
+        }
+
+        .imc-container {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 0 auto;
+        }
+        .imc-container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            margin: 0 auto;
+        }
+        .imc-container label {
+            display: block;
+            margin: 0 auto;
+            font-size: 14px;
+        }
+        .imc-container input {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #000000;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .imc-container button {
+            background-color: #0056b3;
+            color: rgb(251, 255, 0);
+            border: none;
+            padding: 10px 20px;
+            font-size: 23px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .imc-container-button {
+            background-color: #0056b3;
+            color: rgb(251, 255, 0);
+            border: none;
+            padding: 10px 20px;
+            font-size: 23px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin: 0 auto;            
+            border: 1px solid #000000;
+        }
+        .imc-container button:hover {
+            background-color: #ff0202;
+        }
+        .imc-result {
+            font-size: 18px;
+            margin-top: 20px;
+            background-color: #92e2f0;
+            color: rgb(2, 2, 2);
+            border: none;
+            padding: 10px 20px;
+            font-size: 23px;
+            border-radius: 5px;
+            border: 1px solid #000000;            
+        }
+
+        @media (max-width: 600px) {
+            .gallery-item {
+                flex: 0 0 calc(100vt - 20px); /* 100% da largura em telas menores */
+            }
+            
+        }
+
+</style>
+</head>
+ <body>
+  <div class="container">
+    <div class="header">
+    
+    <h1>
+     Quiz EMAGRECIMENTO
+    </h1>
+    
+    <p>
+        Calculadora de IMC
+    </p>
+    <img src="logobranco.png" alt="titulo" width="100%" height="100%" style="vertical-align:middle">
+   </div>
+   <div class="imc-container">
+    <h1>Calculadora de IMC</h1>
+    <br>
+    <label for="idade">Idade:</label>
+    <input type="number" id="idade" placeholder="Ex: 35" step="0.1">
+    
+    <label for="altura">Altura (em metros):</label>
+    <input type="number" id="altura" placeholder="Ex: 1,72" step="0.01">
+
+    <label for="peso">Peso (em kg):</label>
+    <input type="number" id="peso" placeholder="Ex: 70" step="0.1">
+    
+    <button onclick="calcularIMC()">Calcular IMC</button>  
+
+    <div id="resultado" class="imc-result">? ? ? ? ?</div>    
+    </div>
+    <br><br>
+    <a href="idade.html"><button class="imc-container-button" onclick="location.href='index1.html'">Próximo</button></a>   
+
+    <footer>
+        <p>&copy; 2025 foco vida fitness LTDA</p>
+    </footer>
+   </div>
+  </div>
+  <div class="modal" id="modal">
+   <span class="close" onclick="closeModal()">
+    ×
+   </span>
+   <img alt="" id="modal-img" src=""/>
+  </div>
+
+  <script>
+    const addloading = () => {
+        const button = document.querySelector('resultado');
+        button.innerHTML = '<img scr="carregando.gif" class="imc-result">';
+    }
+    addloading();
+    
+
+    function calcularIMC() {
+        const altura = parseFloat(document.getElementById('altura').value);
+        const peso = parseFloat(document.getElementById('peso').value);
+        const resultado = document.getElementById('resultado');
+
+        if (!altura || !peso) {
+            resultado.textContent = 'Por favor, insira valores válidos para altura e peso.';
+            resultado.style.color = 'red';
+            return;
+        }
+
+        const imc = (peso / (altura * altura)).toFixed(2);
+        let classificacao;
+
+        if (imc < 18.5) {
+            classificacao = 'Abaixo do peso';
+            resultado.style.color = '#0059ce';
+        } else if (imc >= 18.5 && imc < 24.9) {
+            classificacao = 'Peso normal';
+            resultado.style.color = '#1b7200';
+        } else if (imc >= 25 && imc < 29.9) {
+            classificacao = 'Sobrepeso';
+            resultado.style.color = '#fbff00';
+        } else {
+            classificacao = 'Obesidade';
+            resultado.style.color = '#ff0202';
+        }
+
+        resultado.textContent = `Seu IMC é ${imc} (${classificacao}).`;        
+    }
+</script>
+
+ </body>
+</html>
